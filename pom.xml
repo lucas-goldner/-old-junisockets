@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>junisockets</groupId>
+    <groupId>space.nebulark.junisockets</groupId>
     <artifactId>junisockets</artifactId>
     <version>1.0-SNAPSHOT</version>
     <licenses>
@@ -19,14 +18,9 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <mainClass>junisockets.main</mainClass>
-
-        <appId>ly.unnecessary.backend</appId>
-        <appUUID>00780a2d-ec0a-40fc-8caa-08c9cf8d8a75</appUUID>
-        <appMaintainer>lucas.goldner@googlemail.com</appMaintainer>
+        <mainClass>space.nebulark.junisockets.Main</mainClass>
         <appLicense>AGPL-3.0</appLicense>
-        <appCategory>Utility</appCategory>
+
     </properties>
 
     <dependencies>
@@ -36,79 +30,10 @@
             <version>5.7.0-M1</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>io.ebean</groupId>
-            <artifactId>ebean-test</artifactId>
-            <version>12.3.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-netty</artifactId>
-            <version>1.30.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-protobuf</artifactId>
-            <version>1.30.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-stub</artifactId>
-            <version>1.30.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.ebean</groupId>
-            <artifactId>ebean</artifactId>
-            <version>12.3.4</version>
-        </dependency>
-        <dependency>
-            <groupId>io.ebean</groupId>
-            <artifactId>ebean-querybean</artifactId>
-            <version>12.3.4</version>
-        </dependency>
-        <dependency>
-            <groupId>io.ebean</groupId>
-            <artifactId>querybean-generator</artifactId>
-            <version>12.3.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.14.jre7</version>
-        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.30</version>
-        </dependency>
-
-        <dependency>
-            <groupId>at.favre.lib</groupId>
-            <artifactId>bcrypt</artifactId>
-            <version>0.9.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.simplejavamail</groupId>
-            <artifactId>simple-java-mail</artifactId>
-            <version>6.0.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.nats</groupId>
-            <artifactId>jnats</artifactId>
-            <version>2.6.8</version>
         </dependency>
 
         <dependency>
@@ -127,34 +52,7 @@
     </dependencies>
 
     <build>
-        <extensions>
-            <extension>
-                <groupId>kr.motd.maven</groupId>
-                <artifactId>os-maven-plugin</artifactId>
-                <version>1.6.2</version>
-            </extension>
-        </extensions>
         <plugins>
-            <plugin>
-                <groupId>org.xolstice.maven.plugins</groupId>
-                <artifactId>protobuf-maven-plugin</artifactId>
-                <version>0.6.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>compile-custom</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <protocArtifact>com.google.protobuf:protoc:3.12.3:exe:${os.detected.classifier}</protocArtifact>
-                    <pluginId>grpc-java</pluginId>
-                    <pluginArtifact>
-                        io.grpc:protoc-gen-grpc-java:1.30.0:exe:${os.detected.classifier}
-                    </pluginArtifact>
-                </configuration>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -191,19 +89,6 @@
             </plugin>
 
             <plugin>
-                <groupId>io.repaint.maven</groupId>
-                <artifactId>tiles-maven-plugin</artifactId>
-                <version>2.17</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <tiles>
-                        <tile>org.avaje.tile:java-compile:11</tile>
-                        <tile>io.ebean.tile:enhancement:12.3.4</tile>
-                    </tiles>
-                </configuration>
-            </plugin>
-
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.0</version>
@@ -211,110 +96,5 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>platform-apple</id>
-            <activation>
-                <os>
-                    <family>mac</family>
-                </os>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.0.0</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <executable>jpackage</executable>
-                            <arguments>
-                                <argument>--input</argument>
-                                <argument>target</argument>
-                                <argument>--name</argument>
-                                <argument>${project.name}</argument>
-                                <argument>--description</argument>
-                                <argument>${project.description}</argument>
-                                <argument>--main-jar</argument>
-                                <argument>${project.artifactId}-${project.version}.jar</argument>
-                                <argument>--main-class</argument>
-                                <argument>${mainClass}</argument>
-                                <argument>--dest</argument>
-                                <argument>staging</argument>
 
-                                <!-- Platform specific -->
-                                <argument>--type</argument>
-                                <argument>dmg</argument>
-                                <argument>--mac-package-identifier</argument>
-                                <argument>${appId}</argument>
-                            </arguments>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>platform-microsoft</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.0.0</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <executable>jpackage</executable>
-                            <arguments>
-                                <argument>--input</argument>
-                                <argument>target</argument>
-                                <argument>--name</argument>
-                                <argument>${project.name}</argument>
-                                <argument>--description</argument>
-                                <argument>${project.description}</argument>
-                                <argument>--main-jar</argument>
-                                <argument>${project.artifactId}-${project.version}.jar</argument>
-                                <argument>--main-class</argument>
-                                <argument>${mainClass}</argument>
-                                <argument>--dest</argument>
-                                <argument>staging</argument>
-
-                                <!-- Platform specific -->
-                                <argument>--type</argument>
-                                <argument>msi</argument>
-                                <argument>--win-menu</argument>
-                                <argument>--win-menu-group</argument>
-                                <argument>${appCategory}</argument>
-                                <argument>--win-shortcut</argument>
-                                <argument>--win-upgrade-uuid</argument>
-                                <argument>${appUUID}</argument>
-
-                                <!-- App specific -->
-                                <argument>--win-console</argument>
-                            </arguments>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
